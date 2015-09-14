@@ -14,7 +14,7 @@ Time: I spent around 1-2 hours on the exercise
 
 Walkthrough of all the app stories:
 
-![Video Walkthrough](tipsyCalc.gif)
+![Video Walkthrough](tipsycalc.gif)
 
 ## What did I miss?
 
