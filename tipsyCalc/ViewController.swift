@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var twoPersonTip: UILabel!
     @IBOutlet weak var threePersonTip: UILabel!
     @IBOutlet weak var fourPersonTip: UILabel!
+    @IBOutlet weak var tipPercentageView: UIView!
+    @IBOutlet weak var splitTipPercentageView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +29,10 @@ class ViewController: UIViewController {
         twoPersonTip.text = "$0.00"
         threePersonTip.text = "$0.00"
         fourPersonTip.text = "$0.00"
+        self.tipPercentageView.alpha = 0
+        self.splitTipPercentageView.alpha = 0
+        self.splitTipPercentageView.center = CGPoint(x: self.splitTipPercentageView.center.x, y: CGFloat(550))
+        self.tipPercentageView.center = CGPoint(x: self.tipPercentageView.center.x, y: CGFloat(382))
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,6 +60,24 @@ class ViewController: UIViewController {
         twoPersonTip.text = String(format: "$%.2f", total / 2)
         threePersonTip.text = String(format: "$%.2f", total / 3)
         fourPersonTip.text = String(format: "$%.2f", total / 4)
+        
+        if(billField.text != "") {
+            UIView.animateWithDuration(0.4, animations: {
+                // This causes first view to fade in and second view to fade out
+                self.tipPercentageView.alpha = 1
+                self.splitTipPercentageView.alpha = 1
+                self.splitTipPercentageView.center = CGPoint(x: self.splitTipPercentageView.center.x, y: CGFloat(382))
+                self.tipPercentageView.center = CGPoint(x: self.tipPercentageView.center.x, y: CGFloat(150))
+            })
+        } else {
+            UIView.animateWithDuration(0.4, animations: {
+                // This causes first view to fade in and second view to fade out
+                self.tipPercentageView.alpha = 0
+                self.splitTipPercentageView.alpha = 0
+                self.splitTipPercentageView.center = CGPoint(x: self.splitTipPercentageView.center.x, y: CGFloat(550))
+                self.tipPercentageView.center = CGPoint(x: self.tipPercentageView.center.x, y: CGFloat(382))
+            })
+        }
     }
 
     @IBAction func onTapHideKeyboard(sender: AnyObject) {
